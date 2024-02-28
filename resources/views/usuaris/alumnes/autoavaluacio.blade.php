@@ -3,5 +3,5 @@
 @section('title', 'Autoavaluació')
 
 @section('content')
-    <autoavaluacio usuari = '@json(Auth::user())'></autoavaluacio>
+    <autoavaluacio :usuari="{{ Auth::user()}}"></autoavaluacio>
 @endsection

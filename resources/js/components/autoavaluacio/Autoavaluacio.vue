@@ -8,8 +8,8 @@
       </nav>
     </div>
     <div class="container-fluid">
-      <autoavaluacio-moduls-table v-if="!doingAutoavaluacioModul" @edit-modul="editModul" :usuari="JSON.parse(usuari)"></autoavaluacio-moduls-table>
-      <resultats-aprenentage-table v-else :usuari="JSON.parse(usuari)" :modul="modulSelected" @state-edit-original="stateEditOriginal"></resultats-aprenentage-table>
+      <autoavaluacio-moduls-table v-if="!doingAutoavaluacioModul" @edit-modul="editModul" :usuari="usuari"></autoavaluacio-moduls-table>
+      <resultats-aprenentage-table v-else :usuari="usuari" :modul="modulSelected" @state-edit-original="stateEditOriginal"></resultats-aprenentage-table>
     </div>
 
   </template>
@@ -17,13 +17,11 @@
   <script>
   
   import ResultatsAprenentageTable from './resultatsAprenentageTable.vue'
-
-
   import AutoavaluacioModulsTable from './AutoavaluacioModulsTable.vue'
   
   export default {
     props: {
-      usuari: JSON,
+      usuari: Object,
     },
 
     components: {

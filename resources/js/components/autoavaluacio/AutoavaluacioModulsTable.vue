@@ -26,7 +26,7 @@
 </template>
 
 <script>
- import { fetchModulesByAlumne } from '../../services/modules.js';
+ import { fetchModulesByUsuari } from '../../services/modules.js';
 export default {
   emits: ['edit-modul'],
   props: {
@@ -44,7 +44,7 @@ export default {
   },
 
   mounted() {
-      fetchModulesByAlumne(this.usuari.id).then((data) => {
+    fetchModulesByUsuari(this.usuari.id).then((data) => {
         this.moduls = data;
       });
     },

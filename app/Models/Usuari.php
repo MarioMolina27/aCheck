@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticable;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 
 class Usuari extends Authenticable
@@ -16,6 +16,11 @@ class Usuari extends Authenticable
     // protected $incrementing = true;
     // protected $keyType = "string";
     public $timestamps = false;
+
+    protected $fillable = [
+        'nom_usuari', 'contrasenya', 'correu', 'nom', 'cognom', 'actiu', 'tipus_usuaris_id'
+    ];
+
 
     public function tipusUsuari()
     {

@@ -17,7 +17,8 @@ class ModulesController extends Controller
      */
     public function index()
     {
-        //
+        $moduls = Modul::all();
+        return ModulsResource::collection($moduls);
     }
 
     /**

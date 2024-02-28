@@ -93,7 +93,11 @@
                                     </div>
                                 </div>
                                
-                        
+                                @php
+                                    $modulsMatriculats = isset($modulsMatriculats) ? $modulsMatriculats : [];
+                                    $cicleUsuari = isset($cicleUsuari) ? $cicleUsuari : '';
+                                @endphp
+                                
                                 <moduls-checkbox :modules_selected='@json($modulsMatriculats)' :modules='@json($modules)' :cicles='@json($cicles)' :cicle='@json($cicleUsuari)'></moduls-checkbox>
                                 
                                 <div class="row mt-4">

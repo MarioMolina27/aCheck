@@ -15,8 +15,8 @@ export const fetchModulesByCicle = async (cicleId) =>
     }
 }
 
-export const fetchModulesByAlumne = async (alumneId) => {
-    const url = `http://localhost:8080/autoavaluacio_MarioMolina/public/api/moduls/modulsMatriculats/${alumneId}`;
+export const fetchModulesByUsuari = async (usuariID) => {
+    const url = `http://localhost:8080/autoavaluacio_MarioMolina/public/api/moduls/modulsMatriculats/${usuariID}`;
 
     try {
         const response = await axios.get(url);
@@ -28,3 +28,21 @@ export const fetchModulesByAlumne = async (alumneId) => {
         throw error;
     }
 }
+
+export const fetchAllModules = async () => 
+{
+    const url = `http://localhost:8080/autoavaluacio_MarioMolina/public/api/moduls`;
+
+    try 
+    {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Error en la petición');
+        let data = await response.json();
+
+        return data;
+    }
+    catch (error) {
+        throw error;
+    }
+}
+

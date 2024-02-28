@@ -26,7 +26,7 @@ Route::middleware(['auth'])->group(function ()
   
     Route::middleware(['tipo_usuario:Alumne'])->group(function () {
         Route::get('alumnes/autoavaluacio', function () {
-            return view('usuaris.autoavaluacio');
+            return view('usuaris.alumnes.autoavaluacio');
         })->name('autoavaluacio');   
     });
 
@@ -36,6 +36,12 @@ Route::middleware(['auth'])->group(function ()
         Route::get('usuaris/{usuari}/editPassword}', [UsuariController::class, 'editPassword'])->name('usuaris.editPassword');
         Route::put('usuaris/{usuari}', [UsuariController::class, 'update'])->name('usuaris.update');
         Route::put('usuaris/{usuari}/updatePassword', [UsuariController::class, 'updatePassword'])->name('usuaris.updatePassword');
+    });
+
+    Route::middleware(['tipo_usuario:Professor'])->group(function () {
+        Route::get('professors/avaluacio', function () {
+            return view('usuaris.profesors.autoavaluacioAlumnes');
+        })->name('avaluacio');
     });
 
 });

@@ -43,7 +43,7 @@ class UsuariController extends Controller
 
         $request->flash();
 
-        return view('usuaris.index', compact('usuaris', 'tipus_usuaris'));
+        return view('usuaris.administradors.index', compact('usuaris', 'tipus_usuaris'));
     }
 
     /**
@@ -57,7 +57,7 @@ class UsuariController extends Controller
         $cicle = Cicle::find($cicles[0]->id);
         $modules = $cicle->moduls;
 
-        return view('usuaris.create', compact('tipus_usuaris', 'cicles', 'modules'));
+        return view('usuaris.administradors.create', compact('tipus_usuaris', 'cicles', 'modules'));
     }
 
     /**
@@ -135,7 +135,7 @@ class UsuariController extends Controller
             $modules = $cicleUsuari->moduls;
         }
 
-        return view('usuaris.create', compact('usuari', 'tipus_usuaris', 'cicles','modules', 'cicleUsuari', 'modulsMatriculats'));
+        return view('usuaris.administradors.create', compact('usuari', 'tipus_usuaris', 'cicles','modules', 'cicleUsuari', 'modulsMatriculats'));
     }
 
     /**
@@ -180,7 +180,7 @@ class UsuariController extends Controller
 
     public function editPassword(Usuari $usuari){
 
-        return view('usuaris.password', compact('usuari'));
+        return view('usuaris.administradors.password', compact('usuari'));
     }
 
     public function updatePassword(Request $request, Usuari $usuari)

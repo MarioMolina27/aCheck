@@ -113,4 +113,18 @@ class UsuariController extends Controller
             return $response;
         }
     }
+
+    public function getAllAlumnes()
+    {
+        $alumnes = Usuari::where('tipus_usuaris_id', 3)->get();
+        return UsuariResource::collection($alumnes);
+    }
+
+    public function getAllAlumnesByModul($modul)
+    {
+        $alumnes = Usuari::where('tipus_usuaris_id', 3)->whereHas('moduls', function ($query) use ($modul) {
+            $query->where('moduls.id', $modul);
+        })->get();
+        return UsuariResource::collection($alumnes);
+    }
 }

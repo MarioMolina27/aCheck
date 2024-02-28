@@ -75,7 +75,7 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Autoavaluació alumnes</a></li>
+                                    <li><a class="dropdown-item" href="/autoavaluacio_MarioMolina/public/professors/avaluacio">Autoavaluació alumnes</a></li>
                                 </ul>
                             </li>
                         @endif
