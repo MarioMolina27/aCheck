@@ -33,7 +33,7 @@
         <div class="row me-3">
             <div class="col-11"></div>
             <div class="col-1">
-                <div class="btn btn-lg btn-primary mt-3 mb-3">Finalitzar</div>
+                <div class="btn btn-lg btn-primary mt-3 mb-3" @click="this.$emit('returnToModules')">Finalitzar</div>
             </div>
         </div>
     </div>
@@ -42,7 +42,10 @@
 <script>
 import { fetchResultatsByModuls } from "../../services/resultats.js";
 
+
 export default {
+    emits: ['returnToModules'],
+
     props: {
         alumne: Object,
         modul: Object,

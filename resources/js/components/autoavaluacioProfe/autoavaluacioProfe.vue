@@ -1,7 +1,7 @@
 <template>
     <div>
-        <alumnes-modul-table v-if="showAlumneData ==='users' " :selectedModul="selectedModul" @updateSelectedAlumne="updateSelectedAlumne"></alumnes-modul-table>
-        <profesors-vista-autoavaluacio v-else-if="showAlumneData === 'autoavaluacio'" :alumne="selectedAlumne" :modul="selectedModul"></profesors-vista-autoavaluacio>
+        <alumnes-modul-table v-if="showAlumneData ==='users' " :selectedModul="selectedModul" @updateSelectedAlumne="updateSelectedAlumne"  @returnToModules="returnToModules"></alumnes-modul-table>
+        <profesors-vista-autoavaluacio v-else-if="showAlumneData === 'autoavaluacio'" :alumne="selectedAlumne" :modul="selectedModul" @returnToModules="returnToModules"></profesors-vista-autoavaluacio>
         <modules-profe-table v-else @updateSelectedModul="updateSelectedModul" ></modules-profe-table>
     </div>
 </template>
@@ -39,6 +39,10 @@ export default {
         updateSelectedAlumne(alumne) {
             this.selectedAlumne = alumne;
             this.showAlumneData = 'autoavaluacio';
+        },
+
+        returnToModules() {
+            this.showAlumneData = '';
         }
     }
 }

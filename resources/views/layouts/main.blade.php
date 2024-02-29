@@ -95,14 +95,14 @@
                         @endif
                     @endif
                 </ul>
-                <div class="d-flex me-5">
+                <div class="d-flex me-3">
                     @if (Auth::check())
-                        <div class="dropdown">
+                        <div class="dropdown dropdown-menu-end">
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="userDropdown"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ Auth::user()->nom }}
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                 <li>
 
                                     <a href="{{ url('/logout') }}" class="dropdown-item"><i
