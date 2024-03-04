@@ -24,7 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::apiResource('moduls', ModulesController::class);
+
+Route::get('moduls/modulesByCicle/{cicle}', [ModulesController::class, 'modulesByCicle']);
+
 
 
 
@@ -45,8 +47,7 @@ Route::group([
 
         Route::post('usuaris/matricular/{usuari}', [UsuariController::class, 'matricular']);
         Route::delete('usuaris/desmatricular/{usuari}', [UsuariController::class, 'desmatricular']);
-
-        Route::get('moduls/modulesByCicle/{cicle}', [ModulesController::class, 'modulesByCicle']);
+        Route::apiResource('moduls', ModulesController::class);
 
         Route::get('moduls/modulsMatriculats/{usuari}', [ModulesController::class, 'modulsMatriculats']);
 
