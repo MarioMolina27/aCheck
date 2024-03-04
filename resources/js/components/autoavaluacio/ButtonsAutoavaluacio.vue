@@ -31,6 +31,7 @@ export default {
         rubrica: Array,
         criteriNota: Array,
         idUser: Number,
+        accesstoken: String,
     },
 
     data() {
@@ -47,7 +48,7 @@ export default {
                 const oldData = this.internCriteriNota[0].pivot.nota;
                 this.internCriteriNota[0].pivot.nota = nota;
 
-                updateNotaCriters(dataId, this.idUser, nota)
+                updateNotaCriters(dataId, this.idUser, nota, this.accesstoken)
                     .then((data) => {})
                     .catch((error) => {
                         this.internCriteriNota[0].pivot.nota = oldData;

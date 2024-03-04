@@ -34,6 +34,7 @@ export default {
     emits: ["edit-modul"],
     props: {
         usuari: Object,
+        accesstoken: String,
     },
     methods: {
         editModul(modul) {
@@ -47,7 +48,8 @@ export default {
     },
 
     mounted() {
-        fetchModulesByUsuari(this.usuari.id).then((data) => {
+        console.log(this.accesstoken);
+        fetchModulesByUsuari(this.usuari.id,this.accesstoken).then((data) => {
             this.moduls = data;
         });
     },

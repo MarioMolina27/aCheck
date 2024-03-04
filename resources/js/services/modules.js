@@ -1,6 +1,6 @@
 export const fetchModulesByCicle = async (cicleId) => 
 {
-    const url = `http://localhost:8080/autoavaluacio_MarioMolina/public/api/moduls/modulesByCicle/${cicleId}`;
+    const url = `http://localhost:8080/autoavaluacio_MarioMolina/public/api/auth/moduls/modulesByCicle/${cicleId}`;
 
     try 
     {
@@ -15,11 +15,15 @@ export const fetchModulesByCicle = async (cicleId) =>
     }
 }
 
-export const fetchModulesByUsuari = async (usuariID) => {
-    const url = `http://localhost:8080/autoavaluacio_MarioMolina/public/api/moduls/modulsMatriculats/${usuariID}`;
+export const fetchModulesByUsuari = async (usuariID,accessToken) => {
+    const url = `http://localhost:8080/autoavaluacio_MarioMolina/public/api/auth/moduls/modulsMatriculats/${usuariID}`;
 
     try {
-        const response = await axios.get(url);
+        const response = await axios.get(url, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
         if (response.status !== 200) throw new Error('Error en la petición');
         return response.data;
 
@@ -35,7 +39,7 @@ export const fetchAllModules = async () =>
 
     try 
     {
-        const response = await fetch(url);
+        const response = await fetch(url)
         if (!response.ok) throw new Error('Error en la petición');
         let data = await response.json();
 

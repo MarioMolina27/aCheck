@@ -8,8 +8,8 @@
       </nav>
     </div>
     <div class="container-fluid">
-      <autoavaluacio-moduls-table v-if="!doingAutoavaluacioModul" @edit-modul="editModul" :usuari="usuari"></autoavaluacio-moduls-table>
-      <resultats-aprenentage-table v-else :usuari="usuari" :modul="modulSelected" @state-edit-original="stateEditOriginal"></resultats-aprenentage-table>
+      <autoavaluacio-moduls-table v-if="!doingAutoavaluacioModul" @edit-modul="editModul" :usuari="usuari" :accesstoken="accesstoken"></autoavaluacio-moduls-table>
+      <resultats-aprenentage-table v-else :usuari="usuari" :modul="modulSelected" @state-edit-original="stateEditOriginal" :accesstoken="accesstoken"></resultats-aprenentage-table>
     </div>
 
   </template>
@@ -22,6 +22,7 @@
   export default {
     props: {
       usuari: Object,
+      accesstoken: String
     },
 
     components: {
@@ -46,7 +47,7 @@
       stateEditOriginal() {
         this.doingAutoavaluacioModul = false;
       }
-    }
+    },
   };
   </script>
 

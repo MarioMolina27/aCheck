@@ -46,8 +46,10 @@
 <script>
 import { fecthAlumnesByModul } from "../../services/usuaris.js";
 export default {
+    emits: ["updateSelectedAlumne", "returnToModules"],
     props: {
         selectedModul: Object,
+        accesstoken: String,
     },
 
     data() {
@@ -57,15 +59,13 @@ export default {
     },
 
     mounted() {
-        console.log(this.selectedModul.id);
-        fecthAlumnesByModul(this.selectedModul.id).then((data) => {
+        fecthAlumnesByModul(this.selectedModul.id, this.accesstoken).then((data) => {
             this.alumnes = data;
         });
     },
 
     methods: {
         selectAlumne(alumne) {
-            console.log(alumne);
             this.$emit("updateSelectedAlumne", alumne);
         },
     },

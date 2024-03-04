@@ -1,8 +1,8 @@
 <template>
     <div>
-        <alumnes-modul-table v-if="showAlumneData ==='users' " :selectedModul="selectedModul" @updateSelectedAlumne="updateSelectedAlumne"  @returnToModules="returnToModules"></alumnes-modul-table>
-        <profesors-vista-autoavaluacio v-else-if="showAlumneData === 'autoavaluacio'" :alumne="selectedAlumne" :modul="selectedModul" @returnToModules="returnToModules"></profesors-vista-autoavaluacio>
-        <modules-profe-table v-else @updateSelectedModul="updateSelectedModul" ></modules-profe-table>
+        <alumnes-modul-table v-if="showAlumneData ==='users' " :selectedModul="selectedModul" @updateSelectedAlumne="updateSelectedAlumne"  @returnToModules="returnToModules" :accesstoken="accesstoken"></alumnes-modul-table>
+        <profesors-vista-autoavaluacio v-else-if="showAlumneData === 'autoavaluacio'" :alumne="selectedAlumne" :modul="selectedModul" @returnToModules="returnToModules" :accesstoken="accesstoken"></profesors-vista-autoavaluacio>
+        <modules-profe-table v-else @updateSelectedModul="updateSelectedModul" :accesstoken="accesstoken"></modules-profe-table>
     </div>
 </template>
 
@@ -14,6 +14,7 @@ import profesorsVistaAutoavaluacio from './profesorsVistaAutoavaluacio.vue';
 export default {
     props:{
         usuari: Object,
+        accesstoken: String
     },
 
     data() {

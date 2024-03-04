@@ -38,6 +38,10 @@ import { fetchAllModules } from "../../services/modules.js";
 export default {
     emits: ["updateSelectedModul"],
 
+    props: {
+        accesstoken: String,
+    },
+
     data() {
         return {
             moduls: [],
@@ -52,7 +56,6 @@ export default {
 
     methods: {
         selectModul(modul) {
-            console.log(modul);
             this.$emit("updateSelectedModul", modul);
         },
     },

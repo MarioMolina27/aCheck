@@ -24,6 +24,7 @@
                                 "
                                 :idUser="this.usuari.id"
                                 @show-toast-error="showToastError"
+                                :accesstoken="accesstoken"
                             ></buttons-autoavaluacio>
                         </div>
                     </div>
@@ -61,6 +62,7 @@ export default {
     props: {
         usuari: Object,
         modul: Object,
+        accesstoken: String,
     },
 
     components: {
@@ -75,7 +77,7 @@ export default {
     },
 
     mounted() {
-        fetchResultatsByModuls(this.modul.id, this.usuari.id).then((data) => {
+        fetchResultatsByModuls(this.modul.id, this.usuari.id,this.accesstoken).then((data) => {
             this.resultats = data;
         });
     },

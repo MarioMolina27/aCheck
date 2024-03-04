@@ -49,6 +49,7 @@ export default {
     props: {
         alumne: Object,
         modul: Object,
+        accesstoken: String,
     },
 
     data() {
@@ -58,8 +59,7 @@ export default {
     },
 
     mounted() {
-        fetchResultatsByModuls(this.modul.id, this.alumne.id).then((data) => {
-            console.log(data);
+        fetchResultatsByModuls(this.modul.id, this.alumne.id,this.accesstoken).then((data) => {
             this.resultats = data;
         });
     },

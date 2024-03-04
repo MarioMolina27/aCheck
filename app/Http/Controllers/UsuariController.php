@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Cicle;
 use App\Models\Usuari;
 use App\Classes\Utilities;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Database\QueryException;
 use Illuminate\Validation\ValidationException;
 
@@ -230,7 +232,7 @@ class UsuariController extends Controller
         return redirect()->route('usuaris.index');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
         return redirect()->route('login');
@@ -256,7 +258,18 @@ class UsuariController extends Controller
         if ($usuari != null) {
             if (Hash::check($password, $usuari->contrasenya)) {
                 Auth::login($usuari);
-                return redirect()->route('index');
+                $tokenResult = $usuari->createToken('appToken');
+
+                $token = $tokenResult->token;
+                if ($request->remember_me)
+                    $token->expires_at = Carbon::now()->addWeeks(1);
+                $token->save();
+                
+                $value = $tokenResult->accessToken;
+                $minutes = 60; 
+                $cookie = Cookie::make('access_token', $value, $minutes);
+                
+                return redirect()->route('index')->withCookie($cookie);
             }
             else {
                 throw ValidationException::withMessages([
@@ -269,5 +282,11 @@ class UsuariController extends Controller
         throw ValidationException::withMessages([
             'username' => ['L\'usuari no existeix.'],
         ]);
+    }
+
+    public function autoavaluacio(Request $request)
+    {
+        $cookie = request()->cookie('access_token');
+        return view('usuaris.alumnes.autoavaluacio');
     }
 }

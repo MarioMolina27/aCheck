@@ -23,10 +23,11 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () 
 {
     Route::get('logout', [UsuariController::class, 'logout']);
-  
+    
     Route::middleware(['tipo_usuario:Alumne'])->group(function () {
         Route::get('alumnes/autoavaluacio', function () {
-            return view('usuaris.alumnes.autoavaluacio');
+            $token = request()->cookie('access_token');
+            return view('usuaris.alumnes.autoavaluacio', compact('token'));
         })->name('autoavaluacio');   
     });
 
@@ -39,8 +40,10 @@ Route::middleware(['auth'])->group(function ()
     });
 
     Route::middleware(['tipo_usuario:Professor'])->group(function () {
+        
         Route::get('professors/avaluacio', function () {
-            return view('usuaris.profesors.autoavaluacioAlumnes');
+            $token = request()->cookie('access_token');
+            return view('usuaris.profesors.autoavaluacioAlumnes', compact('token'));
         })->name('avaluacio');
     });
 
