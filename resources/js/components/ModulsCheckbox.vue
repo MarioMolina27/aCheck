@@ -45,7 +45,7 @@
 
 <script>
 import { fetchModulesByCicle } from "../services/modules.js";
-import { ref } from "vue";
+
 
 export default {
     props: {

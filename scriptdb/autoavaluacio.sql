@@ -45,30 +45,6 @@ INSERT INTO `alumnes_has_criteris_avaluacio` VALUES (5,1,3),(5,2,1),(5,3,1),(5,4
 UNLOCK TABLES;
 
 --
--- Table structure for table `breeds`
---
-
-DROP TABLE IF EXISTS `breeds`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `breeds` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `breeds`
---
-
-LOCK TABLES `breeds` WRITE;
-/*!40000 ALTER TABLE `breeds` DISABLE KEYS */;
-/*!40000 ALTER TABLE `breeds` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `cicles`
 --
 
@@ -125,37 +101,6 @@ INSERT INTO `criteris_avaluacio` VALUES (1,1,'Diferenciar l\'execució de codi a
 UNLOCK TABLES;
 
 --
--- Table structure for table `dogs`
---
-
-DROP TABLE IF EXISTS `dogs`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `dogs` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `color` varchar(50) NOT NULL,
-  `bread` int DEFAULT NULL,
-  `size` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `bread` (`bread`),
-  KEY `size` (`size`),
-  CONSTRAINT `dogs_ibfk_1` FOREIGN KEY (`bread`) REFERENCES `breeds` (`id`),
-  CONSTRAINT `dogs_ibfk_2` FOREIGN KEY (`size`) REFERENCES `sizes` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `dogs`
---
-
-LOCK TABLES `dogs` WRITE;
-/*!40000 ALTER TABLE `dogs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `dogs` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `failed_jobs`
 --
 
@@ -164,11 +109,11 @@ DROP TABLE IF EXISTS `failed_jobs`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `failed_jobs` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
@@ -193,7 +138,7 @@ DROP TABLE IF EXISTS `migrations`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `migrations` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -247,11 +192,11 @@ DROP TABLE IF EXISTS `oauth_access_tokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `oauth_access_tokens` (
-  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint unsigned DEFAULT NULL,
   `client_id` bigint unsigned NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `scopes` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `scopes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `revoked` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -267,7 +212,7 @@ CREATE TABLE `oauth_access_tokens` (
 
 LOCK TABLES `oauth_access_tokens` WRITE;
 /*!40000 ALTER TABLE `oauth_access_tokens` DISABLE KEYS */;
-INSERT INTO `oauth_access_tokens` VALUES ('078f3fe9e8dcae451d856d2f6a8539633196bf5d0a43368bd2dec17452df5449bd65aff372568372',36,5,'appToken','[]',0,'2024-02-26 16:48:07','2024-02-26 16:48:07','2024-08-26 17:48:07'),('0b2f5b1c9386f84f82e7e80953257b3c36069ae762af4e642d328a34252010dbf71d9b466588b47e',71,5,'appToken','[]',0,'2024-03-04 14:24:39','2024-03-04 14:24:39','2024-09-04 15:24:39'),('0f1622064fc2a2c24d02a47d2b3926965b58b342ea372511bebe9bf1ca290ad7b7fa730921b3376d',36,5,'appToken','[]',0,'2024-03-04 13:34:35','2024-03-04 13:34:36','2024-09-04 14:34:35'),('10817b999cb96cccc4ae35130bbbc3b4b909148d4cb0831a297bddc9c6b9bc1087200dec78d6e067',36,5,'appToken','[]',0,'2024-02-26 16:51:40','2024-02-26 16:51:41','2024-03-04 17:51:40'),('118eb736f713a18258f821b217fe0c310505f0a2241b378e412d574da51c5df32f8ae20f214e6ea5',36,5,'appToken','[]',0,'2024-02-26 16:51:56','2024-02-26 16:52:10','2024-03-04 17:52:10'),('15da8ed0129baf42f8d85cf8b19d2bd371b18f91e03d183181e4d78ca792227a594bfef23907f5e3',36,5,'appToken','[]',0,'2024-03-04 14:28:43','2024-03-04 14:28:44','2024-09-04 15:28:43'),('1dbbd64619755e12cf728ba2d659aa495ab91f29472d2b731937770883c3caeb22c52eba20207766',36,5,'appToken','[]',0,'2024-02-28 17:54:24','2024-02-28 17:54:24','2024-08-28 18:54:24'),('1f3d3b13317a61cb769134b1be55e193900e477491aaae7e000b43b120d3c2fad75d9d5e06804316',36,5,'appToken','[]',0,'2024-02-28 17:49:20','2024-02-28 17:49:20','2024-08-28 18:49:20'),('22bb547f7cd4bb31295314781fdef3a42b5a7d01eb9561cef8c74b21c02e34f813742c29b8ca5d64',71,5,'appToken','[]',0,'2024-02-28 17:20:41','2024-02-28 17:20:41','2024-08-28 18:20:41'),('242e2b00256223adf0ab6bfdaedf523e287a8064be2e0c9e5e312fc6cba45d89bee80fe4b7b8821e',36,5,'appToken','[]',0,'2024-02-26 16:43:24','2024-02-26 16:43:24','2024-08-26 17:43:24'),('2e5d01e6f0d9aba6b4bc51c282b08b83aae9a7cb4889f534121ae075aa309df8a38256237c321f69',36,5,'appToken','[]',0,'2024-02-26 16:50:17','2024-02-26 16:50:58','2024-03-04 17:50:58'),('4276e70eefe60038bf7a34e91bb2047ab794b5a808251d8dd3a731ae1938cd0e9ef836aaa03e24d7',36,5,'appToken','[]',0,'2024-02-26 16:52:18','2024-02-26 16:52:18','2024-03-04 17:52:18'),('5088cff19ab7d8cb8ffba902d6cc861d98358e68d1ac9b0cd995207c3e82e39c77916439dd268eb3',36,5,'appToken','[]',0,'2024-02-26 16:51:06','2024-02-26 16:51:08','2024-03-04 17:51:07'),('52350207d125cc350c36828d0dda6ff0ddcb6971bca3d86f8ce4fb007dae0c5e293aa991452eb1f3',36,5,'appToken','[]',0,'2024-02-29 08:00:37','2024-02-29 08:00:37','2024-08-29 09:00:37'),('5388f061ae084128e1d33290b95e50838cee10851dcd34418eed8de8b18f07ffbbfc2dbd05d6eed7',73,5,'appToken','[]',0,'2024-03-04 14:30:21','2024-03-04 14:30:21','2024-09-04 15:30:21'),('56745109a7293ebb4b806b8bb781fae51af376cc9dac96e568e5667c9cae536643a1848c2522b58b',36,5,'appToken','[]',0,'2024-03-04 13:38:39','2024-03-04 13:38:39','2024-09-04 14:38:39'),('57318147a72ddb70083214fcf8b585bc56511c69c6efe82674442fe486c5213b815be5519c1f6e41',36,5,'appToken','[]',0,'2024-03-04 13:35:18','2024-03-04 13:35:18','2024-09-04 14:35:18'),('583a419a89c451bef6313c48e075cbd689b3dd31fbcb4ad910aa415ade5c949881a7625ccd715a53',36,5,'appToken','[]',0,'2024-03-04 13:39:14','2024-03-04 13:39:14','2024-09-04 14:39:14'),('5cd66dc7101f7e52dffd758d4ebabcbfc52e7ab1880f1170f9c4815f59426410370200c6c4bdbc12',36,5,'appToken','[]',0,'2024-03-04 13:11:16','2024-03-04 13:11:17','2024-09-04 14:11:16'),('5f91d0dab4c171387de6c2337f0da882f80051e023d30d7a97c9bb737fdbc4103a0a945d094f22f0',36,5,'appToken','[]',0,'2024-02-28 17:54:49','2024-02-28 17:54:49','2024-08-28 18:54:49'),('60300a89dd819f2013f852a34e6c816a9e4738b71c14a1fd0f9e680c0d794c8784c2e31f572e6793',36,5,'appToken','[]',0,'2024-02-26 16:44:03','2024-02-26 16:44:03','2024-08-26 17:44:03'),('6fa29623e1f221ccb78d6a3f3d98a78a76fbbd3a721ee7a2a11a8ea926c344a8f3045bd1bf6b2c80',36,5,'appToken','[]',0,'2024-03-04 13:38:49','2024-03-04 13:38:49','2024-09-04 14:38:49'),('80b4e406a02668606eaf4a4f00303d2659481e3913bcbd39e158c168f790820c7587fa79ca453f9e',73,5,'appToken','[]',0,'2024-03-04 14:24:54','2024-03-04 14:24:54','2024-09-04 15:24:54'),('8ab3ab2efb1185aa2a843128c9cc11f4d7ba07a198f71c2753e13283d59eb0ae64ce621cc56d1203',36,5,'appToken','[]',0,'2024-03-04 14:29:54','2024-03-04 14:29:54','2024-09-04 15:29:54'),('aecc05665c815d182b691e2afa68c6fdbaa4e0d702c5f9e517ff2dd8044ea7e5a005bf40be476ae0',36,5,'appToken','[]',1,'2024-03-04 13:53:17','2024-03-04 13:53:47','2024-09-04 14:53:17'),('b49abe1b2442aad17a3e00e10047382e48921e6ab104ee7e4dd15cde20ce60874bbfee154345d65a',36,5,'appToken','[]',0,'2024-02-26 16:48:44','2024-02-26 16:49:08','2024-03-04 17:49:07'),('b49ba8f7947318bd59a796c46f7d6fd0de9aad66d1d98191d1c6f61d636b2d9fc42df0d67034f348',36,5,'appToken','[]',0,'2024-02-29 07:55:39','2024-02-29 07:55:39','2024-08-29 08:55:39'),('b89e8bcd2198b7d1a38defc5dcc03014ac037f87612420711cf6b2a60772a5dd1815a5e68aa5cc67',36,5,'appToken','[]',0,'2024-03-04 13:57:42','2024-03-04 13:57:42','2024-09-04 14:57:42'),('c071accf350c69bb923d45b815fa8a74893652f2c74166d1948dfd0f8229256054e6c885a6b5908f',36,5,'appToken','[]',0,'2024-02-28 17:24:13','2024-02-28 17:24:13','2024-08-28 18:24:13'),('c4ea670f162de8fdab9fb3fdbe1fada1da4ef340fae50f8a9782aceaf41c440f880b967ca8698f41',36,5,'appToken','[]',0,'2024-03-04 13:49:43','2024-03-04 13:49:43','2024-09-04 14:49:43'),('c531a9c142ace47d64e29e9c740c6d0ab687da4d2e5067d4d81b9a5d5a9731bbe5d0c669d77279cc',36,5,'appToken','[]',0,'2024-02-26 16:45:52','2024-02-26 16:45:52','2024-08-26 17:45:52'),('c93d1dbffb47907661e3a5cc14f4e9e21949bd115a05d26823f94b19a0c7bcc0389e36b2f371a0f5',36,5,'appToken','[]',0,'2024-02-26 16:44:32','2024-02-26 16:44:32','2024-08-26 17:44:32'),('ce3aeb5ccff1e3a5f38f95e7934dbf3acc8da69a8a6c05f34cf019cf2acfe1c31e2a0f50eaab7948',36,5,'appToken','[]',0,'2024-02-26 16:49:39','2024-02-26 16:49:40','2024-03-04 17:49:40'),('e355bc3d2801b1b0255a06de8d76735c1b4f50ae60f0de7503adf62289a2ad0cbc8dc388f66b0ba3',71,5,'appToken','[]',0,'2024-02-28 17:48:13','2024-02-28 17:48:13','2024-08-28 18:48:13'),('f36cc7ce36cf5affda34bae75b91afec28767606d1d8f7effbab600ce6c784a07a441821b3a792d0',36,5,'appToken','[]',1,'2024-02-26 17:11:22','2024-02-26 17:15:33','2024-03-04 18:11:23');
+INSERT INTO `oauth_access_tokens` VALUES ('078f3fe9e8dcae451d856d2f6a8539633196bf5d0a43368bd2dec17452df5449bd65aff372568372',36,5,'appToken','[]',0,'2024-02-26 16:48:07','2024-02-26 16:48:07','2024-08-26 17:48:07'),('0b2f5b1c9386f84f82e7e80953257b3c36069ae762af4e642d328a34252010dbf71d9b466588b47e',71,5,'appToken','[]',0,'2024-03-04 14:24:39','2024-03-04 14:24:39','2024-09-04 15:24:39'),('0f1622064fc2a2c24d02a47d2b3926965b58b342ea372511bebe9bf1ca290ad7b7fa730921b3376d',36,5,'appToken','[]',0,'2024-03-04 13:34:35','2024-03-04 13:34:36','2024-09-04 14:34:35'),('10817b999cb96cccc4ae35130bbbc3b4b909148d4cb0831a297bddc9c6b9bc1087200dec78d6e067',36,5,'appToken','[]',0,'2024-02-26 16:51:40','2024-02-26 16:51:41','2024-03-04 17:51:40'),('118eb736f713a18258f821b217fe0c310505f0a2241b378e412d574da51c5df32f8ae20f214e6ea5',36,5,'appToken','[]',0,'2024-02-26 16:51:56','2024-02-26 16:52:10','2024-03-04 17:52:10'),('15da8ed0129baf42f8d85cf8b19d2bd371b18f91e03d183181e4d78ca792227a594bfef23907f5e3',36,5,'appToken','[]',0,'2024-03-04 14:28:43','2024-03-04 14:28:44','2024-09-04 15:28:43'),('1dbbd64619755e12cf728ba2d659aa495ab91f29472d2b731937770883c3caeb22c52eba20207766',36,5,'appToken','[]',0,'2024-02-28 17:54:24','2024-02-28 17:54:24','2024-08-28 18:54:24'),('1f3d3b13317a61cb769134b1be55e193900e477491aaae7e000b43b120d3c2fad75d9d5e06804316',36,5,'appToken','[]',0,'2024-02-28 17:49:20','2024-02-28 17:49:20','2024-08-28 18:49:20'),('22bb547f7cd4bb31295314781fdef3a42b5a7d01eb9561cef8c74b21c02e34f813742c29b8ca5d64',71,5,'appToken','[]',0,'2024-02-28 17:20:41','2024-02-28 17:20:41','2024-08-28 18:20:41'),('242e2b00256223adf0ab6bfdaedf523e287a8064be2e0c9e5e312fc6cba45d89bee80fe4b7b8821e',36,5,'appToken','[]',0,'2024-02-26 16:43:24','2024-02-26 16:43:24','2024-08-26 17:43:24'),('2e5d01e6f0d9aba6b4bc51c282b08b83aae9a7cb4889f534121ae075aa309df8a38256237c321f69',36,5,'appToken','[]',0,'2024-02-26 16:50:17','2024-02-26 16:50:58','2024-03-04 17:50:58'),('4276e70eefe60038bf7a34e91bb2047ab794b5a808251d8dd3a731ae1938cd0e9ef836aaa03e24d7',36,5,'appToken','[]',0,'2024-02-26 16:52:18','2024-02-26 16:52:18','2024-03-04 17:52:18'),('43d775be3c6d287e07e839d8586ed0547d83ca13eb4037b47fb591478463427bd4c04d8b9490e693',36,5,'appToken','[]',0,'2024-03-11 16:02:13','2024-03-11 16:02:13','2024-09-11 17:02:13'),('501015bd965fcf6e9e54fc4beca24ff67f494e439be1f4c4f3ab2512fbc6722d7ef34cedf9ba35cd',73,5,'appToken','[]',0,'2024-03-11 16:46:30','2024-03-11 16:46:30','2024-09-11 17:46:30'),('5088cff19ab7d8cb8ffba902d6cc861d98358e68d1ac9b0cd995207c3e82e39c77916439dd268eb3',36,5,'appToken','[]',0,'2024-02-26 16:51:06','2024-02-26 16:51:08','2024-03-04 17:51:07'),('52350207d125cc350c36828d0dda6ff0ddcb6971bca3d86f8ce4fb007dae0c5e293aa991452eb1f3',36,5,'appToken','[]',0,'2024-02-29 08:00:37','2024-02-29 08:00:37','2024-08-29 09:00:37'),('5388f061ae084128e1d33290b95e50838cee10851dcd34418eed8de8b18f07ffbbfc2dbd05d6eed7',73,5,'appToken','[]',0,'2024-03-04 14:30:21','2024-03-04 14:30:21','2024-09-04 15:30:21'),('56745109a7293ebb4b806b8bb781fae51af376cc9dac96e568e5667c9cae536643a1848c2522b58b',36,5,'appToken','[]',0,'2024-03-04 13:38:39','2024-03-04 13:38:39','2024-09-04 14:38:39'),('57318147a72ddb70083214fcf8b585bc56511c69c6efe82674442fe486c5213b815be5519c1f6e41',36,5,'appToken','[]',0,'2024-03-04 13:35:18','2024-03-04 13:35:18','2024-09-04 14:35:18'),('583a419a89c451bef6313c48e075cbd689b3dd31fbcb4ad910aa415ade5c949881a7625ccd715a53',36,5,'appToken','[]',0,'2024-03-04 13:39:14','2024-03-04 13:39:14','2024-09-04 14:39:14'),('5cd66dc7101f7e52dffd758d4ebabcbfc52e7ab1880f1170f9c4815f59426410370200c6c4bdbc12',36,5,'appToken','[]',0,'2024-03-04 13:11:16','2024-03-04 13:11:17','2024-09-04 14:11:16'),('5f91d0dab4c171387de6c2337f0da882f80051e023d30d7a97c9bb737fdbc4103a0a945d094f22f0',36,5,'appToken','[]',0,'2024-02-28 17:54:49','2024-02-28 17:54:49','2024-08-28 18:54:49'),('60300a89dd819f2013f852a34e6c816a9e4738b71c14a1fd0f9e680c0d794c8784c2e31f572e6793',36,5,'appToken','[]',0,'2024-02-26 16:44:03','2024-02-26 16:44:03','2024-08-26 17:44:03'),('6fa29623e1f221ccb78d6a3f3d98a78a76fbbd3a721ee7a2a11a8ea926c344a8f3045bd1bf6b2c80',36,5,'appToken','[]',0,'2024-03-04 13:38:49','2024-03-04 13:38:49','2024-09-04 14:38:49'),('80b4e406a02668606eaf4a4f00303d2659481e3913bcbd39e158c168f790820c7587fa79ca453f9e',73,5,'appToken','[]',0,'2024-03-04 14:24:54','2024-03-04 14:24:54','2024-09-04 15:24:54'),('828858a82575c40bbb5b029abf418fc1a20a33aa66b0a23ae0b64685829c0fc6ad80466c7b7d6b0d',73,5,'appToken','[]',0,'2024-03-11 16:02:46','2024-03-11 16:02:46','2024-09-11 17:02:46'),('8ab3ab2efb1185aa2a843128c9cc11f4d7ba07a198f71c2753e13283d59eb0ae64ce621cc56d1203',36,5,'appToken','[]',0,'2024-03-04 14:29:54','2024-03-04 14:29:54','2024-09-04 15:29:54'),('ae0e3f7c88cb535f6a2e428bba8a7ca82f7fb357890dbad87f868ec92e3456ff056ae8f08039bcf1',71,5,'appToken','[]',0,'2024-03-11 16:01:17','2024-03-11 16:01:17','2024-09-11 17:01:17'),('aecc05665c815d182b691e2afa68c6fdbaa4e0d702c5f9e517ff2dd8044ea7e5a005bf40be476ae0',36,5,'appToken','[]',1,'2024-03-04 13:53:17','2024-03-04 13:53:47','2024-09-04 14:53:17'),('b49abe1b2442aad17a3e00e10047382e48921e6ab104ee7e4dd15cde20ce60874bbfee154345d65a',36,5,'appToken','[]',0,'2024-02-26 16:48:44','2024-02-26 16:49:08','2024-03-04 17:49:07'),('b49ba8f7947318bd59a796c46f7d6fd0de9aad66d1d98191d1c6f61d636b2d9fc42df0d67034f348',36,5,'appToken','[]',0,'2024-02-29 07:55:39','2024-02-29 07:55:39','2024-08-29 08:55:39'),('b89e8bcd2198b7d1a38defc5dcc03014ac037f87612420711cf6b2a60772a5dd1815a5e68aa5cc67',36,5,'appToken','[]',0,'2024-03-04 13:57:42','2024-03-04 13:57:42','2024-09-04 14:57:42'),('c071accf350c69bb923d45b815fa8a74893652f2c74166d1948dfd0f8229256054e6c885a6b5908f',36,5,'appToken','[]',0,'2024-02-28 17:24:13','2024-02-28 17:24:13','2024-08-28 18:24:13'),('c4ea670f162de8fdab9fb3fdbe1fada1da4ef340fae50f8a9782aceaf41c440f880b967ca8698f41',36,5,'appToken','[]',0,'2024-03-04 13:49:43','2024-03-04 13:49:43','2024-09-04 14:49:43'),('c531a9c142ace47d64e29e9c740c6d0ab687da4d2e5067d4d81b9a5d5a9731bbe5d0c669d77279cc',36,5,'appToken','[]',0,'2024-02-26 16:45:52','2024-02-26 16:45:52','2024-08-26 17:45:52'),('c93d1dbffb47907661e3a5cc14f4e9e21949bd115a05d26823f94b19a0c7bcc0389e36b2f371a0f5',36,5,'appToken','[]',0,'2024-02-26 16:44:32','2024-02-26 16:44:32','2024-08-26 17:44:32'),('ce3aeb5ccff1e3a5f38f95e7934dbf3acc8da69a8a6c05f34cf019cf2acfe1c31e2a0f50eaab7948',36,5,'appToken','[]',0,'2024-02-26 16:49:39','2024-02-26 16:49:40','2024-03-04 17:49:40'),('e355bc3d2801b1b0255a06de8d76735c1b4f50ae60f0de7503adf62289a2ad0cbc8dc388f66b0ba3',71,5,'appToken','[]',0,'2024-02-28 17:48:13','2024-02-28 17:48:13','2024-08-28 18:48:13'),('f36cc7ce36cf5affda34bae75b91afec28767606d1d8f7effbab600ce6c784a07a441821b3a792d0',36,5,'appToken','[]',1,'2024-02-26 17:11:22','2024-02-26 17:15:33','2024-03-04 18:11:23');
 /*!40000 ALTER TABLE `oauth_access_tokens` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -279,10 +224,10 @@ DROP TABLE IF EXISTS `oauth_auth_codes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `oauth_auth_codes` (
-  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint unsigned NOT NULL,
   `client_id` bigint unsigned NOT NULL,
-  `scopes` text COLLATE utf8mb4_unicode_ci,
+  `scopes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `revoked` tinyint(1) NOT NULL,
   `expires_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -309,10 +254,10 @@ DROP TABLE IF EXISTS `oauth_clients`;
 CREATE TABLE `oauth_clients` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint unsigned DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `secret` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `provider` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `redirect` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `secret` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `provider` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `redirect` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `personal_access_client` tinyint(1) NOT NULL,
   `password_client` tinyint(1) NOT NULL,
   `revoked` tinyint(1) NOT NULL,
@@ -367,8 +312,8 @@ DROP TABLE IF EXISTS `oauth_refresh_tokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `oauth_refresh_tokens` (
-  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `access_token_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `access_token_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `revoked` tinyint(1) NOT NULL,
   `expires_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -393,8 +338,8 @@ DROP TABLE IF EXISTS `password_reset_tokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -418,11 +363,11 @@ DROP TABLE IF EXISTS `personal_access_tokens`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `personal_access_tokens` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint unsigned NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -501,29 +446,6 @@ INSERT INTO `rubriques` VALUES (1,1,'Entenc la diferència entre l\'execució de
 UNLOCK TABLES;
 
 --
--- Table structure for table `sizes`
---
-
-DROP TABLE IF EXISTS `sizes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `sizes` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `size_name` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sizes`
---
-
-LOCK TABLES `sizes` WRITE;
-/*!40000 ALTER TABLE `sizes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sizes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `tipus_usuaris`
 --
 
@@ -557,11 +479,11 @@ DROP TABLE IF EXISTS `users`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -649,4 +571,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-04 16:44:18
+-- Dump completed on 2024-03-11 18:54:47
