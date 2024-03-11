@@ -35,7 +35,7 @@ Route::group([
 ], function () {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('signup', [AuthController::class, 'signUp']);
-
+    Route::apiResource('moduls', ModulesController::class);
 
 
     Route::group([
@@ -47,7 +47,7 @@ Route::group([
 
         Route::post('usuaris/matricular/{usuari}', [UsuariController::class, 'matricular']);
         Route::delete('usuaris/desmatricular/{usuari}', [UsuariController::class, 'desmatricular']);
-        Route::apiResource('moduls', ModulesController::class);
+        
 
         Route::get('moduls/modulsMatriculats/{usuari}', [ModulesController::class, 'modulsMatriculats']);
 
@@ -58,7 +58,7 @@ Route::group([
         Route::apiResource('resultatAprenentage', ResultatAprenentageController::class);
         Route::apiResource('criteriAvaluacio', CriteriAvaluacioController::class);
         Route::apiResource('usuaris', UsuariController::class);
-        
+
         Route::get('logout', [AuthController::class, 'logout']);
         Route::get('user', [AuthController::class, 'user']);
     });

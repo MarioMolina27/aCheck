@@ -19,8 +19,6 @@
 </head>
 
 <body>
-
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container-fluid">
             <a class="navbar-brand p4-5" href="/autoavaluacio_MarioMolina/public/">
@@ -123,8 +121,6 @@
     <main id="app">
         @yield('content')
     </main>
-    </div>
-    </div>
 
 </body>
 

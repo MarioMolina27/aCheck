@@ -39,13 +39,10 @@ export const fetchAllModules = async (accessToken) =>
 
     try 
     {
-        const response = await axios.get(url, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`
-            }
-        });
-        if (!response.ok) throw new Error('Error en la petición');
-        let data = await response.json();
+        const response = await axios.get(url);
+
+        if (response.status !== 200) throw new Error('Error en la petición');
+        let data = await response.data;
 
         return data;
     }
